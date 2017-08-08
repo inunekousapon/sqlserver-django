@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  sqlserver:
+    image: microsoft/mssql-server-linux
+    hostname: 'sqlserver'
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: 'P@55w0rd'
+    ports:
+      - '1433:1433'
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - sqlserver
+
+volumes:
+  sqlserver-data:
+    driver: local

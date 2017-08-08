@@ -1,0 +1,14 @@
+DATABASES = {
+    'default': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'BBT',
+        'HOST': 'sqlserver',
+        'PORT': 1433,
+        'USER': 'SA',
+        'PASSWORD': 'P@55w0rd',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 13 for SQL Server',
+        },
+    }
+}
+DATABASE_CONNECTION_POOLING = False
